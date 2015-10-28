@@ -1,14 +1,14 @@
 import scala.collection.mutable
 
 def flattenList(nestedList:List[Object])={
-    def simplifyList(flattenList:mutable.MutableList[Object],nestedList:List[Object]):mutable.MutableList[Object]={
+    def simplifyList(flattenList:mutable.MutableList[Any],nestedList:List[Any]):mutable.MutableList[Any]={
       if(nestedList.isEmpty)flattenList
       else{
         def elem=nestedList.head
-        if (elem.isInstanceOf[List[Object]]) simplifyList(flattenList,nestedList.head.asInstanceOf[List[Object]])
+        if (elem.isInstanceOf[List[Any]]) simplifyList(flattenList,nestedList.head.asInstanceOf[List[Any]])
         else {
           if(flattenList.isEmpty)flattenList==mutable.MutableList(elem)
-          else elem +:flattenList
+          else elem +: flattenList
         }
         simplifyList(flattenList,nestedList.tail)
       }
